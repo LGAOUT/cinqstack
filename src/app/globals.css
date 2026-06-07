@@ -2,17 +2,17 @@
 
 /* ─── Palette CinqStack (Tailwind v4 theme) ─────────── */
 @theme {
-  --color-onyx:    #03120e;
-  --color-carbon:  #1a1d1a;
-  --color-slate:   #26413c;
-  --color-charcoal:#3e505b;
-  --color-teal:    #8ab0ab;
+  --color-onyx:     #03120e;
+  --color-carbon:   #1a1d1a;
+  --color-slate:    #26413c;
+  --color-charcoal: #3e505b;
+  --color-teal:     #8ab0ab;
 
   --font-display: "Epilogue", sans-serif;
   --font-body:    "Inter",    sans-serif;
 }
 
-/* ─── Variables CSS brutes (pour usage inline style="") */
+/* ─── Variables CSS brutes ──────────────────────────── */
 :root {
   --onyx:         #03120e;
   --carbon:       #1a1d1a;
@@ -96,8 +96,107 @@ a { color: inherit; text-decoration: none; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-blink    { animation: blink 2s ease-in-out infinite; }
-.animate-fadeInUp { animation: fadeInUp 0.5s ease forwards; }
+/* ─── Layout grids ──────────────────────────────────── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.process-steps {
+  display: flex;
+  gap: 0;
+  position: relative;
+}
+
+/* ─── Responsive helpers ────────────────────────────── */
+.hide-mobile { display: flex; }
+.show-mobile { display: none !important; }
+
+/* ─── Tablet (≤ 1024px) ─────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-grid { gap: 2.5rem; }
+}
+
+/* ─── Mobile (≤ 880px) ──────────────────────────────── */
+@media (max-width: 880px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: flex !important; }
+
+  .container-site { padding: 0 1.25rem; }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hero-visual { display: none !important; }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .process-steps {
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+  .process-line { display: none !important; }
+
+  section { padding-top: 52px !important; padding-bottom: 52px !important; }
+
+  h1 { font-size: clamp(1.9rem, 7vw, 2.5rem) !important; }
+  h2 { font-size: clamp(1.4rem, 5vw, 1.9rem) !important; }
+}
+
+/* ─── Small mobile (≤ 480px) ────────────────────────── */
+@media (max-width: 480px) {
+  .container-site { padding: 0 1rem; }
+
+  .why-points-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-row-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+  .footer-copy { text-align: left !important; }
+}
 
 /* ─── Reduced motion ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
@@ -106,24 +205,4 @@ a { color: inherit; text-decoration: none; }
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
-}
-
-/* ─── Responsive helpers ────────────────────────────── */
-.hide-mobile  { display: flex; }
-.show-mobile  { display: none; }
-
-@media (max-width: 880px) {
-  .hide-mobile { display: none !important; }
-  .show-mobile { display: flex !important; }
-
-  .hero-grid    { grid-template-columns: 1fr !important; }
-  .hero-visual  { display: none !important; }
-  .why-grid     { grid-template-columns: 1fr !important; }
-  .contact-grid { grid-template-columns: 1fr !important; }
-
-  .process-steps {
-    flex-direction: column !important;
-    gap: 1.4rem !important;
-  }
-  .process-steps > div::before { display: none; }
 }

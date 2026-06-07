@@ -1,4 +1,6 @@
 import SectionHeader from "@/components/ui/SectionHeader";
+import AnimatedSection from "@/components/ui/AnimatedSection";
+import AnimatedGrid from "@/components/ui/AnimatedGrid";
 import { WHY_POINTS, STACK_CATEGORIES } from "@/lib/constants";
 import type { Lang } from "@/types";
 
@@ -7,19 +9,13 @@ type WhyProps = { lang: Lang };
 export default function Why({ lang }: WhyProps) {
   return (
     <>
-      {/* Why section */}
+      {/* ── Why section ── */}
       <section id="why" style={{ padding: "72px 0" }}>
         <div className="container-site">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 2fr",
-              gap: "4rem",
-              alignItems: "start",
-            }}
-            className="why-grid"
-          >
-            <div>
+          <div className="why-grid">
+
+            {/* Left — titre animé */}
+            <AnimatedSection>
               <h2
                 style={{
                   fontFamily: "var(--font-epilogue)",
@@ -40,9 +36,11 @@ export default function Why({ lang }: WhyProps) {
               <p style={{ fontSize: "0.8rem", color: "var(--muted)", fontStyle: "italic" }}>
                 {lang === "fr" ? "Why work with CinqStack?" : "Pourquoi travailler avec CinqStack ?"}
               </p>
-            </div>
+            </AnimatedSection>
 
-            <div
+            {/* Right — grille staggerée */}
+            <AnimatedGrid
+              className="why-points-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
@@ -74,7 +72,16 @@ export default function Why({ lang }: WhyProps) {
                   >
                     {pt.title[lang]}
                   </h4>
-                  <em style={{ display: "block", fontStyle: "italic", fontWeight: 300, fontSize: "0.7rem", color: "var(--muted)", marginBottom: "0.25rem" }}>
+                  <em
+                    style={{
+                      display: "block",
+                      fontStyle: "italic",
+                      fontWeight: 300,
+                      fontSize: "0.7rem",
+                      color: "var(--muted)",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
                     {lang === "fr" ? pt.title.en : pt.title.fr}
                   </em>
                   <p style={{ fontSize: "0.7rem", color: "var(--muted)" }}>
@@ -82,19 +89,23 @@ export default function Why({ lang }: WhyProps) {
                   </p>
                 </div>
               ))}
-            </div>
+            </AnimatedGrid>
           </div>
         </div>
       </section>
 
-      {/* Stack section */}
+      {/* ── Stack section ── */}
       <section id="stack" style={{ padding: "72px 0", background: "var(--carbon)" }}>
         <div className="container-site">
-          <SectionHeader
-            tag="Technologies"
-            title={lang === "fr" ? "Notre stack technique" : "Our tech stack"}
-          />
-          <div
+
+          <AnimatedSection>
+            <SectionHeader
+              tag="Technologies"
+              title={lang === "fr" ? "Notre stack technique" : "Our tech stack"}
+            />
+          </AnimatedSection>
+
+          <AnimatedGrid
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
@@ -145,7 +156,7 @@ export default function Why({ lang }: WhyProps) {
                 </div>
               </div>
             ))}
-          </div>
+          </AnimatedGrid>
         </div>
       </section>
     </>

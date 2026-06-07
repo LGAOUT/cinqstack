@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#03120e"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#grad)"/>
+  <defs>
+    <radialGradient id="grad" cx="70%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#8ab0ab" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#03120e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <text x="600" y="280" font-family="sans-serif" font-size="72" font-weight="800" text-anchor="middle" fill="#f2f6f5" letter-spacing="-2">Cinq<tspan fill="#8ab0ab">Stack</tspan></text>
+  <text x="600" y="350" font-family="sans-serif" font-size="24" font-weight="300" text-anchor="middle" fill="#6b8a85">Équipe tech agile pour startups &amp; PME</text>
+  <text x="600" y="420" font-family="sans-serif" font-size="18" text-anchor="middle" fill="#445550">cinqstack.com</text>
+</svg>

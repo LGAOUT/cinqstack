@@ -1,4 +1,6 @@
 import SectionHeader from "@/components/ui/SectionHeader";
+import AnimatedSection from "@/components/ui/AnimatedSection";
+import AnimatedGrid from "@/components/ui/AnimatedGrid";
 import { SERVICES } from "@/lib/constants";
 import type { Lang } from "@/types";
 
@@ -8,11 +10,18 @@ export default function Services({ lang }: ServicesProps) {
   return (
     <section id="services" style={{ padding: "72px 0" }}>
       <div className="container-site">
-        <SectionHeader
-          tag="Services"
-          title={lang === "fr" ? "Ce qu'on construit pour vous" : "What we build for you"}
-        />
-        <div
+        <AnimatedSection>
+          <SectionHeader
+            tag="Services"
+            title={
+              lang === "fr"
+                ? "Ce qu'on construit pour vous"
+                : "What we build for you"
+            }
+          />
+        </AnimatedSection>
+
+        <AnimatedGrid
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
@@ -29,6 +38,7 @@ export default function Services({ lang }: ServicesProps) {
                 padding: "1.4rem",
                 transition: "border-color 0.25s, transform 0.25s",
                 cursor: "default",
+                height: "100%",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "rgba(138,176,171,0.4)";
@@ -101,7 +111,7 @@ export default function Services({ lang }: ServicesProps) {
               </p>
             </div>
           ))}
-        </div>
+        </AnimatedGrid>
       </div>
     </section>
   );

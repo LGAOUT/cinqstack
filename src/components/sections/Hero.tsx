@@ -1,16 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import type { Lang } from "@/types";
 
 type HeroProps = { lang: Lang };
-
-const metrics = [
-  { n: "47+",   label: { fr: "Projets livrés",     en: "Projects shipped"   } },
-  { n: "3j",    label: { fr: "Délai landing page", en: "Landing page ETA"   } },
-  { n: "<24h",  label: { fr: "Temps de réponse",   en: "Response time"      } },
-  { n: "300€",  label: { fr: "À partir de",        en: "Starting from"      } },
-];
 
 export default function Hero({ lang }: HeroProps) {
   return (
@@ -21,21 +16,18 @@ export default function Hero({ lang }: HeroProps) {
         display: "flex",
         alignItems: "center",
         padding: "90px 0 70px",
-        background: "radial-gradient(ellipse 65% 55% at 65% 45%, rgba(138,176,171,.05) 0%, transparent 65%)",
+        background:
+          "radial-gradient(ellipse 65% 55% at 65% 45%, rgba(138,176,171,.05) 0%, transparent 65%)",
       }}
     >
       <div className="container-site" style={{ width: "100%" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-          className="hero-grid"
-        >
-          {/* Left */}
-          <div>
+        <div className="hero-grid">
+          {/* ── Left ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             {/* Pill */}
             <div
               style={{
@@ -50,7 +42,7 @@ export default function Hero({ lang }: HeroProps) {
                 fontWeight: 500,
                 color: "var(--teal)",
                 letterSpacing: "0.07em",
-                textTransform: "uppercase" as const,
+                textTransform: "uppercase",
                 marginBottom: "1.6rem",
                 fontFamily: "var(--font-inter)",
               }}
@@ -65,9 +57,7 @@ export default function Hero({ lang }: HeroProps) {
                   flexShrink: 0,
                 }}
               />
-              {lang === "fr"
-                ? "Collectif tech agile"
-                : "Agile tech collective"}
+              {lang === "fr" ? "Collectif tech agile" : "Agile tech collective"}
             </div>
 
             {/* Headline */}
@@ -137,6 +127,7 @@ export default function Hero({ lang }: HeroProps) {
                   fontWeight: 700,
                   fontSize: "0.85rem",
                   transition: "opacity .15s, transform .15s",
+                  display: "inline-block",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.opacity = "0.84";
@@ -149,6 +140,7 @@ export default function Hero({ lang }: HeroProps) {
               >
                 {lang === "fr" ? "Demander un devis" : "Get a quote"}
               </Link>
+
               <Link
                 href="#services"
                 style={{
@@ -161,6 +153,7 @@ export default function Hero({ lang }: HeroProps) {
                   fontSize: "0.85rem",
                   border: "1px solid var(--border-hover)",
                   transition: "border-color .15s, background .15s",
+                  display: "inline-block",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "var(--teal)";
@@ -176,12 +169,17 @@ export default function Hero({ lang }: HeroProps) {
             </div>
 
             {/* Badges */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}>
+            <motion.div
+              style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
               {[
-                { fr: "⚡ Livraison rapide", en: "⚡ Fast delivery",      accent: true  },
-                { fr: "5 ingénieurs",        en: "5 engineers",            accent: false },
-                { fr: "Web · App · Auto",    en: "Web · App · Auto",       accent: false },
-                { fr: "React · TS · AI",     en: "React · TS · AI",        accent: false },
+                { fr: "⚡ Livraison rapide", en: "⚡ Fast delivery",   accent: true  },
+                { fr: "5 ingénieurs",        en: "5 engineers",        accent: false },
+                { fr: "Web · App · Auto",    en: "Web · App · Auto",   accent: false },
+                { fr: "React · TS · AI",     en: "React · TS · AI",    accent: false },
               ].map((b) => (
                 <span
                   key={b.fr}
@@ -199,17 +197,15 @@ export default function Hero({ lang }: HeroProps) {
                   {lang === "fr" ? b.fr : b.en}
                 </span>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Right — metrics grid */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "0.7rem",
-            }}
+          {/* ── Right — metrics grid ── */}
+          <motion.div
             className="hero-visual"
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Big stat */}
             <div
@@ -229,19 +225,41 @@ export default function Hero({ lang }: HeroProps) {
                   color: "var(--teal)",
                 }}
               >
-                47+
+                <AnimatedCounter target={47} suffix="+" />
               </div>
-              <div style={{ fontSize: "0.72rem", color: "var(--muted)", marginTop: "0.2rem" }}>
+              <div
+                style={{
+                  fontSize: "0.72rem",
+                  color: "var(--muted)",
+                  marginTop: "0.2rem",
+                }}
+              >
                 {lang === "fr" ? "Projets livrés" : "Projects shipped"}
               </div>
             </div>
 
             {/* Small cards */}
             {[
-              { icon: "🚀", title: { fr: "Livraison rapide",   en: "Fast delivery"   }, desc: { fr: "3–5 jours landing page", en: "3–5 days landing page" } },
-              { icon: "🤝", title: { fr: "Direct & clair",     en: "Direct & clear"  }, desc: { fr: "Communication directe",  en: "Direct communication"  } },
-              { icon: "💰", title: { fr: "Prix accessibles",   en: "Fair pricing"    }, desc: { fr: "À partir de 300€",       en: "From €300"             } },
-              { icon: "🧹", title: { fr: "Code propre",        en: "Clean code"      }, desc: { fr: "Maintenable & évolutif", en: "Maintainable & scalable"} },
+              {
+                icon: "🚀",
+                title: { fr: "Livraison rapide",  en: "Fast delivery"    },
+                desc:  { fr: "3–5 jours landing", en: "3–5 days landing" },
+              },
+              {
+                icon: "🤝",
+                title: { fr: "Direct & clair",    en: "Direct & clear"   },
+                desc:  { fr: "Communication directe", en: "Direct communication" },
+              },
+              {
+                icon: "💰",
+                title: { fr: "Prix accessibles",  en: "Fair pricing"     },
+                desc:  { fr: "À partir de 300€",  en: "From €300"        },
+              },
+              {
+                icon: "🧹",
+                title: { fr: "Code propre",       en: "Clean code"       },
+                desc:  { fr: "Maintenable & évolutif", en: "Maintainable & scalable" },
+              },
             ].map((card) => (
               <div
                 key={card.icon}
@@ -250,12 +268,20 @@ export default function Hero({ lang }: HeroProps) {
                   border: "1px solid var(--border)",
                   borderRadius: "10px",
                   padding: "1.2rem",
-                  transition: "border-color 0.25s",
+                  transition: "border-color 0.25s, transform 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--teal-border)")}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--teal-border)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
               >
-                <div style={{ fontSize: "0.9rem", marginBottom: "0.65rem" }}>{card.icon}</div>
+                <div style={{ fontSize: "0.9rem", marginBottom: "0.65rem" }}>
+                  {card.icon}
+                </div>
                 <h4
                   style={{
                     fontFamily: "var(--font-epilogue)",
@@ -272,7 +298,7 @@ export default function Hero({ lang }: HeroProps) {
                 </p>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
