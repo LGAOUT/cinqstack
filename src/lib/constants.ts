@@ -3,7 +3,7 @@ import type {
   Service,
   Package,
   ProcessStep,
-  Project,
+  ProjectInsert,
   FaqItem,
   WhyPoint,
   StackCategory,
@@ -156,14 +156,16 @@ export const PROCESS_STEPS: ProcessStep[] = [
   },
 ];
 
-/* ─── Projects ──────────────────────────────────────── */
-export const PROJECTS: Project[] = [
+/* ─── Projects (fallback statique) ─────────────────── */
+export const PROJECTS: ProjectInsert[] = [
   {
     id: "tone-in",
     title: "Tone In",
     desc_fr: "Plateforme musicale, réseau social pour artistes.",
     desc_en: "Music platform and social network for artists.",
     stack: ["Next.js", "Supabase", "TypeScript", "Stripe"],
+    url: "https://tone-in.vercel.app",
+    order: 1,
     thumb_color: "#0d1a17",
     thumb_emoji: "🎵",
   },
@@ -173,6 +175,7 @@ export const PROJECTS: Project[] = [
     desc_fr: "Landing page pour service de conciergerie Airbnb.",
     desc_en: "Landing page for an Airbnb concierge service.",
     stack: ["React", "Tailwind", "Framer Motion"],
+    order: 2,
     thumb_color: "#0e1a1f",
     thumb_emoji: "🏠",
   },
@@ -182,6 +185,7 @@ export const PROJECTS: Project[] = [
     desc_fr: "Interface de gestion moderne pour PME.",
     desc_en: "Modern management interface for small businesses.",
     stack: ["Next.js", "Recharts", "PostgreSQL"],
+    order: 3,
     thumb_color: "#0d1a14",
     thumb_emoji: "📊",
   },
@@ -191,6 +195,7 @@ export const PROJECTS: Project[] = [
     desc_fr: "App de streaming React/Firebase avec auth.",
     desc_en: "React/Firebase streaming app with authentication.",
     stack: ["React", "Firebase", "TMDB API"],
+    order: 4,
     thumb_color: "#1a0d0d",
     thumb_emoji: "🎬",
   },
@@ -200,6 +205,7 @@ export const PROJECTS: Project[] = [
     desc_fr: "Landing page touristique élégante pour villa.",
     desc_en: "Elegant tourism landing page for a private villa.",
     stack: ["HTML/CSS", "JavaScript", "Responsive"],
+    order: 5,
     thumb_color: "#0d1a10",
     thumb_emoji: "🌴",
   },
@@ -241,59 +247,59 @@ export const WHY_POINTS: WhyPoint[] = [
 
 /* ─── Tech stack ────────────────────────────────────── */
 export const STACK_CATEGORIES: StackCategory[] = [
-  { label: "Frontend",       items: ["React", "Next.js", "TypeScript", "Tailwind CSS"]         },
-  { label: "Backend",        items: ["Node.js", "Express", "NestJS", "Spring Boot"]            },
-  { label: "Data & Cloud",   items: ["Supabase", "Firebase", "PostgreSQL", "MongoDB"]          },
-  { label: "Automation & AI",items: ["OpenAI API", "n8n", "Make", "REST APIs"]                 },
-  { label: "Deployment",     items: ["Vercel", "Netlify", "Docker", "GitHub Actions"]          },
+  { label: "Frontend",        items: ["React", "Next.js", "TypeScript", "Tailwind CSS"]  },
+  { label: "Backend",         items: ["Node.js", "Express", "NestJS", "Spring Boot"]     },
+  { label: "Data & Cloud",    items: ["Supabase", "Firebase", "PostgreSQL", "MongoDB"]   },
+  { label: "Automation & AI", items: ["OpenAI API", "n8n", "Make", "REST APIs"]          },
+  { label: "Deployment",      items: ["Vercel", "Netlify", "Docker", "GitHub Actions"]   },
 ];
 
 /* ─── FAQ ───────────────────────────────────────────── */
 export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 1,
-    question: { fr: "Combien coûte un projet ?",                    en: "How much does a project cost?"         },
-    answer:   {
+    question: { fr: "Combien coûte un projet ?",                   en: "How much does a project cost?"          },
+    answer: {
       fr: "Une landing page commence à partir de 300€. Un site vitrine autour de 700€. Un MVP dépend des fonctionnalités, à partir de 1 500€.",
       en: "A landing page starts from €300. A business website from €700. An MVP depends on required features, starting from €1,500.",
     },
   },
   {
     id: 2,
-    question: { fr: "Combien de temps faut-il ?",                   en: "How long does it take?"                },
-    answer:   {
+    question: { fr: "Combien de temps faut-il ?",                  en: "How long does it take?"                 },
+    answer: {
       fr: "Landing page : 3–5 jours. Site vitrine : 7–14 jours. MVP : 2–4 semaines. On respecte les délais annoncés.",
       en: "Landing page: 3–5 days. Business website: 7–14 days. MVP: 2–4 weeks. We respect announced deadlines.",
     },
   },
   {
     id: 3,
-    question: { fr: "Pouvez-vous reprendre un projet existant ?",   en: "Can you take over an existing project?" },
-    answer:   {
+    question: { fr: "Pouvez-vous reprendre un projet existant ?",  en: "Can you take over an existing project?" },
+    answer: {
       fr: "Oui. On peut analyser votre code existant et reprendre la main sur n'importe quel projet, quelle que soit la stack.",
       en: "Yes. We can audit your existing codebase and take over any project, regardless of the tech stack.",
     },
   },
   {
     id: 4,
-    question: { fr: "Travaillez-vous avec de petits budgets ?",     en: "Do you work with small budgets?"       },
-    answer:   {
+    question: { fr: "Travaillez-vous avec de petits budgets ?",    en: "Do you work with small budgets?"        },
+    answer: {
       fr: "Oui. Notre offre Start est pensée pour les petits budgets, sans compromis sur la qualité.",
       en: "Yes. Our Start package is designed for smaller budgets without compromising quality.",
     },
   },
   {
     id: 5,
-    question: { fr: "Faites-vous la maintenance ?",                 en: "Do you provide maintenance?"           },
-    answer:   {
+    question: { fr: "Faites-vous la maintenance ?",                en: "Do you provide maintenance?"            },
+    answer: {
       fr: "Oui. On propose un suivi post-livraison et peut intervenir à la demande pour toute évolution ou correction.",
       en: "Yes. We offer post-delivery support and can step in on demand for any update or fix.",
     },
   },
   {
     id: 6,
-    question: { fr: "Comment démarrer avec vous ?",                 en: "How do we get started?"                },
-    answer:   {
+    question: { fr: "Comment démarrer avec vous ?",                en: "How do we get started?"                 },
+    answer: {
       fr: "Remplissez le formulaire de contact avec votre brief. On vous répond sous 24h avec une première proposition.",
       en: "Fill in the contact form with your brief. We'll reply within 24h with an initial proposal.",
     },

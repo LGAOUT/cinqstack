@@ -1,60 +1,44 @@
+"use client";
+
+import { useState } from "react";
+import type { Lang } from "@/types";
+
+import Navbar   from "@/components/sections/Navbar";
+import Hero     from "@/components/sections/Hero";
+import Services from "@/components/sections/Services";
+import Packages from "@/components/sections/Packages";
+import Process  from "@/components/sections/Process";
+import Projects from "@/components/sections/Projects";
+import Why      from "@/components/sections/Why";
+import FAQ      from "@/components/sections/FAQ";
+import Contact  from "@/components/sections/Contact";
+import Footer   from "@/components/sections/Footer";
+import Divider  from "@/components/ui/Divider";
+
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("fr");
+
   return (
-    <main>
-      {/* Sections will be added in Phase 3 */}
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "1rem",
-          fontFamily: "var(--font-epilogue)",
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "2.5rem",
-            fontWeight: 800,
-            letterSpacing: "-0.03em",
-            color: "var(--white-full)",
-          }}
-        >
-          Cinq<span style={{ color: "var(--teal)" }}>Stack</span>
-        </h1>
-        <p style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-          Phase 1 complete — Setup & Architecture ✓
-        </p>
-        <div
-          style={{
-            display: "flex",
-            gap: "0.5rem",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            marginTop: "0.5rem",
-          }}
-        >
-          {["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase"].map(
-            (tech) => (
-              <span
-                key={tech}
-                style={{
-                  background: "var(--carbon)",
-                  border: "1px solid var(--teal-border)",
-                  color: "var(--teal)",
-                  padding: "0.25rem 0.65rem",
-                  borderRadius: "5px",
-                  fontSize: "0.75rem",
-                  fontFamily: "var(--font-inter)",
-                }}
-              >
-                {tech}
-              </span>
-            )
-          )}
-        </div>
-      </div>
-    </main>
+    <>
+      <Navbar lang={lang} onLangToggle={() => setLang((l) => (l === "fr" ? "en" : "fr"))} />
+      <main>
+        <Hero     lang={lang} />
+        <Divider />
+        <Services lang={lang} />
+        <Divider />
+        <Packages lang={lang} />
+        <Divider />
+        <Process  lang={lang} />
+        <Divider />
+        <Projects lang={lang} />
+        <Divider />
+        <Why      lang={lang} />
+        <Divider />
+        <FAQ      lang={lang} />
+        <Divider />
+        <Contact  lang={lang} />
+      </main>
+      <Footer lang={lang} />
+    </>
   );
 }
