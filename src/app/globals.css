@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
+/* ─── Palette CinqStack (Tailwind v4 theme) ─────────── */
+@theme {
+  --color-onyx:    #03120e;
+  --color-carbon:  #1a1d1a;
+  --color-slate:   #26413c;
+  --color-charcoal:#3e505b;
+  --color-teal:    #8ab0ab;
+
+  --font-display: "Epilogue", sans-serif;
+  --font-body:    "Inter",    sans-serif;
+}
+
+/* ─── Variables CSS brutes (pour usage inline style="") */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --onyx:         #03120e;
+  --carbon:       #1a1d1a;
+  --slate:        #26413c;
+  --charcoal:     #3e505b;
+  --teal:         #8ab0ab;
+  --teal-dim:     rgba(138, 176, 171, 0.1);
+  --teal-mid:     rgba(138, 176, 171, 0.18);
+  --teal-border:  rgba(138, 176, 171, 0.22);
+  --white:        #e8eeec;
+  --white-full:   #f2f6f5;
+  --muted:        #6b8a85;
+  --muted2:       #445550;
+  --border:       rgba(138, 176, 171, 0.1);
+  --border-hover: rgba(138, 176, 171, 0.22);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--onyx);
+  color: var(--white);
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar              { width: 4px; }
+::-webkit-scrollbar-track        { background: var(--onyx); }
+::-webkit-scrollbar-thumb        { background: var(--slate); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--charcoal); }
+
+/* ─── Focus visible ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* ─── Selection ─────────────────────────────────────── */
+::selection {
+  background: var(--teal-mid);
+  color: var(--white-full);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ─── Helpers ───────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.container-site {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ─── Animations ────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-blink    { animation: blink 2s ease-in-out infinite; }
+.animate-fadeInUp { animation: fadeInUp 0.5s ease forwards; }
+
+/* ─── Reduced motion ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }
